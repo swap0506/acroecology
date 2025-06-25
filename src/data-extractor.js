@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { extractFull } from 'node-7z';
+import pkg from 'node-7z';
+const { extractFull } = pkg;
 import { FastqParser } from './fastq-parser.js';
 
 export class DataExtractor {
