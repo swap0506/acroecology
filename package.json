@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "node-7z": "^3.0.0"
+    "node-7z": "^3.0.0",
+    "yauzl": "^3.0.0",
+    "tar": "^7.0.0"
   },
   "keywords": [
     "fastq",
