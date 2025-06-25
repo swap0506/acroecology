@@ -1,0 +1,23 @@
+{
+  "name": "data-extraction-merger",
+  "version": "1.0.0",
+  "description": "Extract and merge FASTQ and FAOSTAT data for model training",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "extract": "node src/extract-data.js",
+    "merge": "node src/merge-data.js",
+    "process": "node src/process-all.js",
+    "dev": "node src/process-all.js"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "node-7z": "^3.0.0",
+    "fast-csv": "^4.3.6",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
