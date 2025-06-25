@@ -1,0 +1,3 @@
+record_id,data_type,sequence_id,source_file,sequence_length,gc_content,a_count,t_count,g_count,c_count,n_count,quality_score_avg,sequence_complexity,has_ambiguous_bases,sample_name,barcode,experiment_design,target_gene,platform,area,item,element,year,value,unit
+fao_1,agricultural_statistics,,FAOSTAT_data_en_6-23-2025.csv,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,
+fao_2,agricultural_statistics,,FAOSTAT_data_en_6-23-2025.csv,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,

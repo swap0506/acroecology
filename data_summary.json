@@ -1,0 +1,49 @@
+{
+  "total_records": 2,
+  "sequence_records": 0,
+  "faostat_records": 2,
+  "avg_sequence_length": 0,
+  "avg_gc_content": 0,
+  "unique_sources": 1,
+  "processing_timestamp": "2025-06-25T16:25:14.163Z",
+  "data_types": {
+    "genomic_sequence": 0,
+    "agricultural_statistics": 2
+  },
+  "sequence_stats": {
+    "min_length": null,
+    "max_length": null,
+    "avg_quality": 0
+  },
+  "file_info": {
+    "output_file": "MODEL_TRAINING_DATA.csv",
+    "columns": [
+      "record_id",
+      "data_type",
+      "sequence_id",
+      "source_file",
+      "sequence_length",
+      "gc_content",
+      "a_count",
+      "t_count",
+      "g_count",
+      "c_count",
+      "n_count",
+      "quality_score_avg",
+      "sequence_complexity",
+      "has_ambiguous_bases",
+      "sample_name",
+      "barcode",
+      "experiment_design",
+      "target_gene",
+      "platform",
+      "area",
+      "item",
+      "element",
+      "year",
+      "value",
+      "unit"
+    ],
+    "estimated_size_mb": "0.00"
+  }
+}
