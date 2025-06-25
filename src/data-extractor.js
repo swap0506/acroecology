@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { spawn } from 'child_process';
 import path from 'path';
+import { extractFull } from 'node-7z';
 import { FastqParser } from './fastq-parser.js';
 
 export class DataExtractor {
@@ -22,49 +22,23 @@ export class DataExtractor {
     return new Promise((resolve, reject) => {
       console.log('Extracting 7z file...');
       
-      // Try different extraction methods
-      const extractors = [
-        () => spawn('7z', ['x', filePath, `-o${this.extractedDir}`, '-y']),
-        () => spawn('7za', ['x', filePath, `-o${this.extractedDir}`, '-y']),
-        () => spawn('p7zip', ['-d', filePath])
-      ];
+      const stream = extractFull(filePath, this.extractedDir, {
+        $progress: true
+      });
 
-      let currentExtractor = 0;
+      stream.on('progress', (progress) => {
+        console.log(`Extraction progress: ${progress.percent}%`);
+      });
 
-      const tryNextExtractor = () => {
-        if (currentExtractor >= extractors.length) {
-          reject(new Error('No suitable 7z extractor found. Please install 7zip or p7zip.'));
-          return;
-        }
+      stream.on('end', () => {
+        console.log('7z file extracted successfully');
+        resolve();
+      });
 
-        const extractor = extractors[currentExtractor]();
-        currentExtractor++;
-
-        extractor.stdout.on('data', (data) => {
-          console.log(`Extraction: ${data}`);
-        });
-
-        extractor.stderr.on('data', (data) => {
-          console.error(`Extraction error: ${data}`);
-        });
-
-        extractor.on('close', (code) => {
-          if (code === 0) {
-            console.log('7z file extracted successfully');
-            resolve();
-          } else {
-            console.log(`Extractor failed with code ${code}, trying next...`);
-            tryNextExtractor();
-          }
-        });
-
-        extractor.on('error', (err) => {
-          console.log(`Extractor error: ${err.message}, trying next...`);
-          tryNextExtractor();
-        });
-      };
-
-      tryNextExtractor();
+      stream.on('error', (err) => {
+        console.error('Extraction error:', err.message);
+        reject(new Error(`Failed to extract 7z file: ${err.message}`));
+      });
     });
   }
 
